@@ -1,7 +1,7 @@
-from app.routes.user_routes import user_bp
-from app.routes.product_routes import product_bp
+from app.routes.cv_routes import cv_bp
+from app.routes.jobs_routes import jobs_bp
 
 
 def register_routes(app):
-    app.register_blueprint(user_bp, url_prefix="/users")
-    app.register_blueprint(product_bp, url_prefix="/products")
+    app.register_blueprint(cv_bp, url_prefix="/cv")
+    app.register_blueprint(jobs_bp, url_prefix="/jobs")
