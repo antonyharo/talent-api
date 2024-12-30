@@ -2,8 +2,7 @@ from flask import Blueprint, jsonify, request
 import os
 import time
 import google.generativeai as genai
-from dotenv import load_dotenv
-from config import Config  # Importar a classe de configuração
+from app.config import Config
 
 # Configurar a API do Gemini
 genai.configure(api_key=Config.GEMINI_API_KEY)
