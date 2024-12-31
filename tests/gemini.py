@@ -2,7 +2,7 @@ import requests
 import os
 
 # URL do seu endpoint Flask
-url = "http://127.0.0.1:5000/upload"  # Substitua com a URL correta do seu servidor Flask
+url = "http://127.0.0.1:5000/cv"  # Substitua com a URL correta do seu servidor Flask
 
 # Caminho para o arquivo PDF de exemplo
 file_path = "/home/antony/projetos/talent-api/tests/test.pdf"  # Substitua com o caminho correto

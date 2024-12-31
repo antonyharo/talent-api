@@ -47,8 +47,7 @@ def wait_for_files_active(files):
     print("...todos os arquivos estão prontos.")
 
 
-# Rota para upload e análise de currículo
-@cv_bp.route("/upload", methods=["POST"])
+@cv_bp.route("/", methods=["POST"])
 def upload():
     if "file" not in request.files:
         return jsonify({"error": "Nenhum arquivo enviado."}), 400
@@ -100,14 +99,8 @@ def upload():
             """
         )
 
-        return jsonify({"response": response.text})
+        return jsonify({"response": response.text}), 201
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-# Rota de exemplo para análise de CV
-@cv_bp.route("/", methods=["POST"])
-def analyze_cv():
-    data = request.get_json()
-    return jsonify({"message": "CV analysis initiated", "data": data}), 201
