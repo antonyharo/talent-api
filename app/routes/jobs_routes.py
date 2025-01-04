@@ -3,6 +3,8 @@ import csv
 from jobspy import scrape_jobs
 import logging
 import requests
+import math
+import pandas as pd
 
 from app.config import Config
 
@@ -14,23 +16,19 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-
 def renew_tor_ip_with_socks():
     try:
-        # Configura a sessão requests para usar o Tor como proxy SOCKS5
         session = requests.Session()
         session.proxies = {
             "http": "socks5://127.0.0.1:9050",
             "https": "socks5://127.0.0.1:9050",
         }
-        # Verifica se o proxy está funcionando
         ip = session.get("https://api.ipify.org?format=json", timeout=5).json()["ip"]
         logging.info(f"Tor IP renewed successfully: {ip}")
         return session
     except Exception as e:
         logging.error(f"Error renewing Tor IP with socks: {e}")
         return None
-
 
 def get_real_ip(session):
     try:
@@ -40,7 +38,6 @@ def get_real_ip(session):
     except Exception as e:
         logging.error(f"Error getting IP: {e}")
         return None
-
 
 def format_proxies(proxies):
     if not proxies:
@@ -96,37 +93,29 @@ def search_jobs():
         use_tor = data.get("use_tor", False)
         candidate_id = data.get("candidate_id")  # Get the candidate_id
 
-        # Use a default google search term if none is provided
         if not google_search_term:
             google_search_term = f"{search_term} jobs near {location} since yesterday"
 
         logging.info(f"Starting job scraping with parameters: {data}")
 
-        # convert list of string to list if it's a string
         if isinstance(site_name, str):
             site_name = [site_name]
 
-        # Initialize variables for proxy and session
         formatted_proxies = None
         tor_session = None
-        proxy_dict = None  # Initialize proxy_dict
+        proxy_dict = None
 
-        # Format proxies to include protocol before passing to scrape_jobs
         if proxies:
             formatted_proxies = format_proxies(proxies)
             logging.info(f"Proxies after format: {formatted_proxies}")
 
-        # Use Tor proxy only if explicitly set, and renew tor ip if true
         if use_tor:
             tor_session = renew_tor_ip_with_socks()
             if not tor_session:
                 logging.info(f"Not using tor proxy, due to an error.")
-                formatted_proxies = (
-                    formatted_proxies if formatted_proxies else None
-                )  # keep proxies if available
+                formatted_proxies = formatted_proxies if formatted_proxies else None
             else:
                 logging.info(f"Using tor proxy.")
-                # Create the proxy dictionary for jobspy
                 proxy_dict = {
                     "http": "socks5://127.0.0.1:9050",
                     "https": "socks5://127.0.0.1:9050",
@@ -146,7 +135,6 @@ def search_jobs():
                 elif proxy.startswith("https://"):
                     proxy_dict["https"] = proxy
 
-        # Get IP before scraping using the appropriate session
         if tor_session:
             ip_address = get_real_ip(tor_session)
             logging.info(f"Getting IP using tor_session: {ip_address}")
@@ -165,7 +153,7 @@ def search_jobs():
             location=location,
             distance=distance,
             job_type=job_type,
-            proxies=proxy_dict,  # Pass the proxy dictionary here
+            proxies=proxy_dict,
             is_remote=is_remote,
             results_wanted=results_wanted,
             easy_apply=easy_apply,
@@ -178,21 +166,17 @@ def search_jobs():
             country_indeed=country_indeed,
             enforce_annual_salary=enforce_annual_salary,
             ca_cert=ca_cert,
-            session=tor_session if tor_session else None,  # pass the session
+            session=tor_session if tor_session else None,
         )
 
-        # Add candidate_id to the DataFrame
+        # Substituir valores NaN por None no DataFrame
+        jobs = jobs.where(pd.notnull(jobs), None)
+
+        # Adicionar candidate_id ao DataFrame, se presente
         if candidate_id:
             jobs["candidate_id"] = candidate_id
 
         jobs_json = jobs.to_dict(orient="records")
-        logging.info(f"Found {len(jobs)} jobs")
-
-        # Save as CSV file
-        jobs.to_csv(
-            "jobs.csv", quoting=csv.QUOTE_NONNUMERIC, escapechar="\\", index=False
-        )
-
         response_data = {"message": f"Found {len(jobs)} jobs", "jobs": jobs_json}
 
         if ip_address:
