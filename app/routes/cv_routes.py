@@ -47,8 +47,13 @@ def wait_for_files_active(files):
     print("...todos os arquivos estão prontos.")
 
 
+from flask import request, jsonify
+import os
+
+
 @cv_bp.route("/", methods=["POST"])
 def upload():
+    # Verificar se o arquivo foi enviado
     if "file" not in request.files:
         return jsonify({"error": "Nenhum arquivo enviado."}), 400
 
@@ -58,6 +63,11 @@ def upload():
 
     if not file.filename.endswith(".pdf"):
         return jsonify({"error": "Somente arquivos PDF são suportados."}), 400
+
+    # Verificar se a descrição da vaga foi enviada
+    job = request.form.get("job")
+    if not job:
+        return jsonify({"error": "A descrição da vaga é obrigatória."}), 400
 
     # Salvar o arquivo localmente
     file_path = os.path.join("uploads", file.filename)
@@ -71,13 +81,14 @@ def upload():
         # Esperar que o arquivo esteja ativo
         wait_for_files_active([gemini_file])
 
-        # Iniciar a sessão de chat com o arquivo
+        # Iniciar a sessão de chat com o arquivo e a descrição da vaga
         chat_session = MODEL.start_chat(
             history=[
                 {
                     "role": "user",
                     "parts": [
                         gemini_file,
+                        job,  # Passar a descrição da vaga como parte do contexto
                     ],
                 },
             ]
@@ -85,10 +96,11 @@ def upload():
 
         # Enviar uma mensagem ao modelo
         response = chat_session.send_message(
-            """
+            f"""
             **INSTRUÇÕES IMPORTANTES!**
             - Você é um analisador de currículos;
             - Use o bom senso e as melhores práticas críticas para fazer a análise do currículo;
+            - Baseie sua análise na descrição da vaga a seguir: {job};
             - Seja claro e conciso nas suas palavras;
             - Determine pontos chave, críticos, positivos, negativos e que podem melhorar a respeito do currículo e do próprio candidato;
             - Em hipótese alguma forneça os cabeçalhos genéricos do tipo: 'Claro, está aqui a análise...', não transpareça nenhum tipo de traço que é um chatbot, apenas gere o que foi pedido;
@@ -103,4 +115,3 @@ def upload():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
