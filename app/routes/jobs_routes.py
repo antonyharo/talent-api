@@ -1,9 +1,8 @@
 from flask import Blueprint, jsonify, request
 import csv
-from jobspy import scrape_jobs
+from jobspy import scrape_jobs # type: ignore
 import logging
 import requests
-import json
 import math
 
 from app.config import Config
@@ -213,8 +212,6 @@ def search_jobs():
 
         # Prepara a resposta
         response_data = {"message": f"Found {len(jobs)} jobs", "jobs": cleaned_jobs}
-
-        logging.info(cleaned_jobs[0])
 
         # Se IP foi obtido, adicione na resposta
         if ip_address:
