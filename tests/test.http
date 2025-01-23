@@ -1,0 +1,3 @@
+curl -X POST http://localhost:5000/gemini \
+-H "Content-Type: application/json" \
+-d '{"message": "Faça uma tabela no formato markdown (que o github possa renderizar como tabela em um README.md) contendo os prós, contras e usabilidade de 5 linguagens de programação"}'

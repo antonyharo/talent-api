@@ -108,6 +108,7 @@ def upload():
             - Forneça uma análise detalhada e em formato markdown com os tópicos devidamente separados.
 
             Conforme as instruções acima, gere uma análise crítica robusta, longa e detalhada do currículo anexado.
+            No final de sua análise, construa uma tabela de pontos fortes, pontos fracos, diferencias e observações do currículo.
             """
         )
 
