@@ -46,11 +46,6 @@ def wait_for_files_active(files):
             raise Exception(f"O arquivo {file.name} falhou no processamento.")
     print("...todos os arquivos estão prontos.")
 
-
-from flask import request, jsonify
-import os
-
-
 @cv_bp.route("/", methods=["POST"])
 def upload():
     # Verificar se o arquivo foi enviado
@@ -112,7 +107,7 @@ def upload():
             """
         )
 
-        return jsonify({"response": response.text}), 201
+        return jsonify({"response": response.text}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
