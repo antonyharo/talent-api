@@ -1,0 +1,20 @@
+curl -X POST http://localhost:5000/jobs-analyzer \
+-H "Content-Type: application/json" \
+-d '{
+  "jobs": [
+    {
+      "title": "Desenvolvedor Backend",
+      "salary": "R$ 8.000,00",
+      "location": "Remoto",
+      "benefits": "Plano de saúde, Vale-refeição",
+      "culture": "Ambiente colaborativo e inovador"
+    },
+    {
+      "title": "Analista de Dados",
+      "salary": "R$ 6.500,00",
+      "location": "São Paulo - SP",
+      "benefits": "Vale-transporte, Academia",
+      "culture": "Cultura focada em aprendizado contínuo"
+    }
+  ]
+}'
