@@ -1,0 +1,191 @@
+curl -X POST http://localhost:5000/jobs-comparator \
+-H "Content-Type: application/json" \
+-d '{
+  "jobs": [
+    {
+      "title": "Profissional Líder Técnico de Engenharia de Dados",
+      "salary": "R$ 8.000,00",
+      "description": "A primeira coisa que você precisa saber é que aqui você não vai cair na rotina. A Radix desenvolve soluções para empresas de diferentes setores e indústrias. Cada projeto tem suas tecnologias, soluções e prazos e você terá oportunidade de atuar e experimentar diferentes desafios. Além da nossa atuação pelo Brasil, com escritório no Rio de janeiro, São Paulo e Belo Horizonte, temos também filiais nos Estados Unidos, fazendo com que a Radix se consolide cada vez mais como uma empresa global.
+
+      Quer fazer parte dessa história e transformar ideias e sonhos em realidade?
+
+      #VemPraRadix
+
+      Responsibilities and assignments
+
+      Buscamos pessoas que queiram somar e fazer parte de um ecossistema que leva inovação, tecnologia e soluções para os mais diversos segmentos do mercado. Por aqui, os desafios são constantes e você não vai cair na rotina.
+
+      Como Profissional Líder Técnico de Engenharia de Dados você vai:
+
+      Colaborar com o time de Data Science no desenvolvimento de aplicações, garantindo uma integração eficiente entre engenharia de dados e análise de dados.
+      Colaborar com o time de negócio para garantir que os requisitos de negócios sejam compreendidos e atendidos de forma eficaz.
+      Desenhar novos processos e arquitetura de dados de forma estruturada para soluções avançadas de dados.
+      Publicar e gerenciar acessos para garantir a segurança e disponibilidade dos dados.
+      Realizar modelagem de dados e disponibilizar dicionário de dados equivalente para facilitar o entendimento e uso dos dados pela organização.
+      Criar dags, automações e otimizações de processos, além de manter e monitorar no AirFlow para automação de processos ou em soluções similares como Cognite Workflows.
+      Distribuir os dados por camadas conforme as melhores práticas de arquitetura de dados.
+      Manter a documentação dos processos sempre atualizada para garantir transparência e consistência nas operações.
+      Suportar e desenvolver os membros da equipe de Engenharia de Dados, compartilhando conhecimento e promovendo o crescimento profissional.
+
+      Requirements And Qualifications
+
+      Para essa vaga, você deve ter:
+
+      Inglês avançado / fluente para conversação.
+      Domínio em lógica de programação, Python e SQL para desenvolvimento e manipulação de dados.
+      Experiência em plataforma de dados SaaS, datalakes, datawarehouse e big data.
+      Vivência em gestão ágil e processos relacionados.
+      Experiência com Cloud, LGPD e melhoria contínua de processos.
+      Experiência em gestão de documentação e APIs de integração entre sistemas.
+      Experiência em MySQL, MongoDB, Postgres e BigQuery para manipulação avançada de bancos de dados.
+      Experiência em Frameworks de Dados e Data Quality.
+
+      É um diferencial se você tiver:
+
+      Experiência com PowerBI para visualização de dados.
+      Experiência com Airflow Composer para automação avançada de processos.
+      Experiência com Azure Data Factory para integração e armazenamento de dados.
+      Experiência com APIs e integração entre sistemas.
+      Experiência com gestão de acessos em Cloud, conhecimento IAM, RBAC.
+      Conhecimentos em outras plataformas de dados e tecnologias emergentes.
+      Modelo de trabalho: CLT
+      Regime de contratação: Remoto
+
+      Additional information
+
+      Benefícios:
+
+      Plano de Saúde + Odontológico 
+      Médico da empresa 
+      Gympass (+3 dependentes) 
+      Auxílio creche até 3 anos 
+      Licença maternidade e paternidade estendidas 
+      Auxílio home office 
+      VR e/ou VA 
+      Day off de aniversário 
+      Universidade Corporativa 
+      Convênio com instituições de ensino e cursos de idioma 
+      Programa de treinamentos internos 
+      Plano de Incentivos atrelado à avaliação de Desempenho. 
+
+      A Radix está sempre no topo das Melhores Empresas para se trabalhar porque:
+
+      Temos profissionais comprometidos, dedicados, curiosos e inovadores. 
+      O espírito de equipe é a nossa maior força. Trabalhamos de forma cooperativa e sabemos que estamos juntos, remando na mesma direção. 
+      Temos um ambiente diverso, que valoriza equidade e inclusão. 
+      Nossa jornada de trabalho é flexível e em quase todos os projetos é possível trabalhar de qualquer lugar do Brasil. 
+      Valorizamos o bem-estar e o cuidado com as nossas pessoas, com programas de apoio à saúde mental, psiquiatra e médico consultor disponíveis. 
+
+      Curtiu?
+
+      #VemPraRadix
+
+      Process stages
+
+      Step 1: Registration1Registration
+      Step 2: Análise de currículo2Análise de currículo
+      Step 3: Entrevista com Gente e Gestão3Entrevista com Gente e Gestão
+      Step 4: Teste de Inglês4Teste de Inglês
+      Step 5: Entrevista com o Gestor da Vaga5Entrevista com o Gestor da Vaga
+      Step 6: Carta Proposta6Carta Proposta
+      Step 7: Hiring7Hiring
+
+      Uma empresa global, movida à inovação e desafios 🚀
+
+      Presente em mais de 25 países, a Radix conecta pessoas, oportunidades, projetos e negócios no mundo todo. Nós criamos e transformamos conhecimento em resultados.
+
+      Com times multidisciplinares e forte atuação em Engenharia, Automação, Desenvolvimento de Software e Produtos, TI Industrial e Consultoria, oferecemos serviços e soluções tecnológicas atendendo os mais variados setores da indústria.
+
+      Desde a nossa fundação, em 2010, estamos na lista das Melhores Empresas para se trabalhar no Rio de Janeiro, no Brasil e na América Latina. Aqui, a gente investe em criatividade, diversidade, capacitação e desenvolvimento de carreira. Quando um radixer cresce, nós crescemos também e, juntos, dobramos de tamanho nos últimos dois anos.
+
+      A rotina da Radix é dinâmica, colaborativa e Everywhere, com profissionais atuando de 23 estados do Brasil, além de Estados Unidos, Europa e Asia. Nosso modelo de trabalho possibilita o equilíbrio para pessoas que estão sempre em movimento, gostam de liberdade e vivem a tecnologia e a inovação sem fronteiras.
+
+      Somos inquietos, entusiastas da mudança e abraçamos a transformação sem perder os valores que guiam nossa trajetória: relações de longo prazo, foco nas pessoas, ética, agilidade e comprometimento."
+    },
+    {
+      "title": "Analista de Dados",
+      "salary": "R$ 6.500,00",
+      "description": "Há 31 anos no mercado, a BRQ Digital Solutions se consolidou como uma das maiores empresas de transformação digital do país. Com uma plataforma de serviços end to end, oferecemos as mais eficientes e inovadoras soluções, tecnologias e metodologias, promovendo uma jornada de transformação para grandes marcas, de diferentes segmentos, no Brasil e no exterior.
+
+      Nossos 2.500 mil funcionários atuam no modelo de trabalho Anywhere Office e a empresa é destaque como um dos melhores lugares para trabalhar pelo GPTW e Glassdoor. 
+
+
+      BRQ WAY
+
+
+
+      No nosso BRQ WAY temos a missão de conectar, transformar e empoderar cada um dos nossos profissionais, que por aqui são chamados de feras, para que todos tenham a chance de usar sua paixão para transformar o mundo com tecnologia!
+
+
+
+      É isso que queremos, com nosso Programa de Diversidade e Inclusão trabalhamos com dois objetivos: equidade e inclusão, buscamos aumentar a participação dos grupos minoritários, quebrar os vieses inconscientes e expandir a conscientização sobre temas tão importantes para que todos sejam livres para serem quem são.
+
+
+
+      Vamos transformar juntos! Vem ser fera com a gente.
+
+
+
+      Ei profissionais de engenharia de dados, venha fazer parte de uma das maiores empresas de transformação digital do país!
+
+
+      - O que procuramos?
+
+
+
+      Buscamos um #fera com espírito empreendedor e que sabe que é o verdadeiro protagonista do seu sucesso! Queremos em nosso time pessoas motivadas por desafios, constante evolução e, claro, que são apaixonadas por tecnologia e transformação!
+
+
+
+      - O que você deve ter? 
+
+
+
+      Experiência com LLMOps, MLOps, Python, API.
+      Experiência com ambientes com IA e interesse em seguir atuando com IA.
+
+
+      - O que temos pra te oferecer?
+
+
+
+      Mais do que um plano de carreira! 
+
+
+
+      A BRQ acredita que cada fera deve ser protagonista do seu crescimento, tendo autonomia para criar seu próprio plano de desenvolvimento profissional. Nosso plano de carreira é dividido em 4 pilares:
+
+
+
+      Carreira técnica: Você pode seguir a trilha de crescimento técnico, se o seu objetivo for se desenvolver cada vez mais em diferentes tecnologias. Oferecemos diversos treinamentos!
+
+
+
+      Carreira de Liderança: Você pode seguir a trilha e se tornar um líder, desenvolver pessoas, auxiliar na evolução profissional e pessoal e estimular o crescimento para o surgimento de novos talentos.
+
+
+
+      Experiência internacional: Estamos crescendo cada vez mais fora do Brasil e você tem possibilidade de atuar em projetos para outros países, ou diretamente nos países onde a BRQ tem sede.
+
+
+
+      Empreendedorismo: De funcionário para sócio! Temos o Innovation Hub, a Corporate Venture que investe em ideias de profissionais que tenham sinergia com nosso negócio. 
+
+
+
+      - E os benefícios?
+
+
+
+      Plano de Saúde; Plano Odontológico; Seguro de Vida; Vale Refeição; Vale Alimentação; Horário Flexível; Home Office; Gympass, Telemedicina, Telenutrição, Canal de suporte emocional 24h e muito mais!
+
+
+
+      - Como é trabalhar na BRQ?
+
+
+
+      Temos um clima descontraído, diversos programas e eventos internos. Adoramos comemorar! E fazemos isso muito bem! Veja aqui no Youtube: youtube.com/brqdigitalsolutions"
+    }
+  ]
+}'
