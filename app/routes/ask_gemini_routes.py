@@ -5,7 +5,7 @@ ask_gemini_bp = Blueprint("ask_gemini", __name__)
 
 
 @ask_gemini_bp.route("", methods=["POST"])
-def upload():
+def ask_gemini():
     data = request.get_json()
 
     # Validação da entrada
