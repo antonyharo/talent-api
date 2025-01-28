@@ -1,3 +1,3 @@
 curl -X POST http://localhost:5000/cv-analyzer \
   -F "file=@tests/test.pdf" \
-  -F "job=Analista de dados"
+  -F "message=O que diz este arquivo?"

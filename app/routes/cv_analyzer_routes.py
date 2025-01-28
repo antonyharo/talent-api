@@ -1,16 +1,16 @@
-import os
-import time
 from flask import Blueprint, jsonify, request
+from app.services.google_gemini import GoogleGeminiClient
 import google.generativeai as genai
 from app.config import Config
+import time
+import os
 
+cv_analyzer_bp = Blueprint("cv_analyzer", __name__)
 
-# Configuração do Gemini API
 genai.configure(api_key=Config.GEMINI_API_KEY)
 
 cv_analyzer_bp = Blueprint("cv_analyzer", __name__)
 
-# Constantes de configuração
 GENERATION_CONFIG = {
     "temperature": 1,
     "top_p": 0.95,
@@ -54,34 +54,8 @@ def wait_for_file_processing(files):
         if file.state.name != "ACTIVE":
             raise Exception(f"O arquivo {file.name} falhou no processamento.")
 
-
-def generate_resume_analysis(job_description: str, gemini_file):
-    """Gera a análise crítica do currículo com base na descrição da vaga."""
-    chat_session = MODEL.start_chat(history=[{"role": "user", "parts": [gemini_file]}])
-
-    response = chat_session.send_message(
-        f"""
-        **INSTRUÇÕES IMPORTANTES!**
-        - Você é um analisador de currículos;
-        - Use o bom senso e as melhores práticas críticas para fazer a análise do currículo;
-        - Baseie sua análise na descrição da vaga a seguir: {job_description};
-        - Seja claro e conciso nas suas palavras;
-        - Determine pontos chave, críticos, positivos, negativos e que podem melhorar a respeito do currículo e do próprio candidato;
-        - Em hipótese alguma forneça os cabeçalhos genéricos do tipo: 'Claro, está aqui a análise...', não transpareça nenhum tipo de traço que é um chatbot, apenas gere o que foi pedido;
-        - Seja crítico e detalhista;
-        - Forneça uma análise detalhada e em formato markdown com os tópicos devidamente separados.
-        
-        Conforme as instruções acima, gere uma análise crítica robusta, longa e detalhada do currículo anexado.
-        No final de sua análise, construa uma tabela de pontos fortes, pontos fracos, diferencias e observações do currículo.
-        """
-    )
-
-    return response.text
-
-
 @cv_analyzer_bp.route("", methods=["POST"])
-def upload():
-    # Validação do arquivo
+def cv_analyzer():
     if "file" not in request.files:
         return jsonify({"error": "Nenhum arquivo enviado."}), 400
 
@@ -92,10 +66,9 @@ def upload():
     if not is_valid_pdf(file.filename):
         return jsonify({"error": "Somente arquivos PDF são suportados."}), 400
 
-    # Validação da descrição da vaga
-    job_description = request.form.get("job")
-    if not job_description:
-        return jsonify({"error": "A descrição da vaga é obrigatória."}), 400
+    message = request.form.get("message")
+    if not message:
+        return jsonify({"error": "A mensagem é um campo obrigatório."}), 400
 
     try:
         # Salva o arquivo no diretório de uploads
@@ -108,9 +81,13 @@ def upload():
         wait_for_file_processing([gemini_file])
 
         # Gera a análise crítica do currículo
-        analysis_response = generate_resume_analysis(job_description, gemini_file)
+        chat_session = MODEL.start_chat(
+            history=[{"role": "user", "parts": [gemini_file]}]
+        )
 
-        return jsonify({"response": analysis_response}), 200
+        response = chat_session.send_message(message)
+
+        return jsonify({"response": response.text}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
