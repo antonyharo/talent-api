@@ -1,0 +1,11 @@
+curl -X POST "http://localhost:5000/best-profile" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "job": {
+            "title": "Desenvolvedor Backend",
+            "level": "Pleno",
+            "sector": "Tecnologia",
+            "description": "Desenvolvimento e manutenção de APIs REST utilizando Python e Django. Colaboração com times de frontend e infraestrutura.",
+            "salary": "R$ 8.000 – R$ 12.000"
+        }
+        }'
