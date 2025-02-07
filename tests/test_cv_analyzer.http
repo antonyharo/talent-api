@@ -1,3 +1,4 @@
 curl -X POST http://localhost:5000/cv-analyzer \
--F "file=@tests/test.pdf" \
--F "file=@uploads/data-science-cv-example.pdf" 
+     -F "file=@tests/test.pdf" \
+     -F 'job={"title": "Desenvolvedor Python", "description": "Vaga para desenvolvedor com experiência em Flask"}' \
+     -H "Content-Type: multipart/form-data"

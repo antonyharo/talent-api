@@ -1,0 +1,19 @@
+curl -X POST http://localhost:5000/jobs/ \
+     -H "Content-Type: application/json" \
+     -d '{
+           "search_term": "Software Engineer",
+           "location": "New York",
+           "site_name": "linkedin",
+           "distance": 50,
+           "job_type": "full-time",
+           "is_remote": false,
+           "results_wanted": 10,
+           "easy_apply": false,
+           "offset": 0,
+           "hours_old": 72,
+           "verbose": 2,
+           "linkedin_fetch_description": false,
+           "country_indeed": "USA",
+           "enforce_annual_salary": false,
+           "use_tor": false,
+         }'
