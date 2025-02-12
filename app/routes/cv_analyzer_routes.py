@@ -67,9 +67,8 @@ def cv_analyzer():
     if not all(is_valid_pdf(file.filename) for file in files):
         return jsonify({"error": "Todos os arquivos devem estar no formato PDF."}), 400
 
-    job = request.form.get("job")
-    if not job or not isinstance(job, dict):
-        return jsonify({"error": "O objeto 'vaga' é obrigatório."}), 400
+    jobTitle = request.form.get("jobTitle", "")
+    jobDescription = request.form.get("jobDescription", "")
 
     try:
         create_upload_directory()
@@ -99,8 +98,8 @@ def cv_analyzer():
 
             **"Informações da Vaga:"**  
 
-            - **Título da Vaga:** {job["title"]}  
-            - **Descrição da Vaga:** {job["description"]}  
+            - **Título da Vaga:** {jobTitle}  
+            - **Descrição da Vaga:** {jobDescription}  
 
             Se algum dos dados acima estiver incompleto ou ausente, utilize informações típicas para esse tipo de cargo.  
 
@@ -225,6 +224,8 @@ def cv_analyzer():
                 ---
 
                 ## **📊 Comparação de Candidatos**  
+
+                Caso haja somente um candidato, faça um resumo das habilidades dele neste formato de tabela:
 
                 | Critério | Candidato 1 | Candidato 2 | Candidato 3 |
                 |----------|------------|------------|------------|
