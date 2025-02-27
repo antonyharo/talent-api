@@ -67,7 +67,7 @@ def clean_data(data):
         return data
 
 
-@jobs_bp.route("/", methods=["POST"])
+@jobs_bp.route("", methods=["POST"])
 def search_jobs():
     try:
         data = request.get_json()
